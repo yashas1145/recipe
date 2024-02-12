@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <h1>Desi Taco</h1>
+    <form action="/recipe" method="post">
+        <button type="submit" value="chicken" name="choice" class="btn">🍗</button>
+        <button type="submit" value="beef" name="choice" class="btn">🥩</button>
+        <button type="submit" value="fish" name="choice" class="btn">🐟</button>
+    </form>
+    
+    <% if(locals.recipe) { %>
+        <h3><%= recipe.name %></h3>
+        <p><%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %></p>
+        <p><%= recipe.ingredients.salsa.name %>, <%= recipe.ingredients.salsa.spiciness %></p>
+
+        <% recipe.ingredients.toppings.forEach((topping) => { %>
+            <p><%= topping.quantity %> of <%= topping.name %></p>
+        <% }) %>
+    <% }else { %>
+        <h3>Select your favorite taco</h3>
+    <% } %>
+</body>
+</html>
